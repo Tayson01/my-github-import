@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { ChevronDown, Phone } from "lucide-react";
 
-import { Btn, SectionLabel } from "@/components/site/ui";
-import { PHONE, TEL, WA, faqs } from "@/lib/site-data";
+import { FAQSection } from "@/components/site/FAQSection";
+import { faqs } from "@/lib/site-data";
 
 export const Route = createFileRoute("/intrebari-frecvente")({
   head: () => ({
@@ -41,41 +39,9 @@ export const Route = createFileRoute("/intrebari-frecvente")({
 });
 
 function FaqPage() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <main className="mx-auto max-w-3xl px-5 py-14">
-      <SectionLabel>Întrebări frecvente</SectionLabel>
-      <h1 className="mt-3 text-3xl font-extrabold sm:text-4xl tracking-tight">Tot ce vrei să știi înainte să suni.</h1>
-
-      <div className="mt-10 space-y-3">
-        {faqs.map((f, i) => (
-          <div key={f.q} className="rounded-2xl border border-border bg-card">
-            <button
-              onClick={() => setOpen(open === i ? null : i)}
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold"
-              aria-expanded={open === i}
-            >
-              {f.q}
-              <ChevronDown
-                className={`size-4 shrink-0 text-brand transition-transform ${open === i ? "rotate-180" : ""}`}
-              />
-            </button>
-            {open === i && (
-              <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-10 flex flex-wrap gap-3">
-        <Btn href={`tel:${TEL}`}>
-          <Phone className="size-4" /> Sună: {PHONE}
-        </Btn>
-        <Btn href={WA} variant="ghost">
-          Întreabă pe WhatsApp
-        </Btn>
-      </div>
+    <main>
+      <FAQSection />
     </main>
   );
 }
