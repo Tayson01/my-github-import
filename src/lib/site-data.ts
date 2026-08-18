@@ -22,10 +22,14 @@ export type Service = {
   desc: string;
   intro: string;
   price: string;
+  priceFrom: string;
+  priceNote?: string;
+  pricing?: { label: string; value: string; note?: string }[];
   duration: string;
   bullets: string[];
   steps: string[];
 };
+
 
 export const services: Service[] = [
   {
