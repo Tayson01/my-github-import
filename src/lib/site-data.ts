@@ -69,6 +69,8 @@ export const services: Service[] = [
     intro:
       "Reparăm pana direct acolo unde ești: plombă internă, ciuperci de vulcanizare, schimb de valvă sau resigilare jantă. Anvelopa rămâne sigură pentru rulaj normal, cu garanție pentru lucrare.",
     price: "de la 80 lei",
+    priceFrom: "80 lei",
+    priceNote: "reparație simplă pe loc",
     duration: "15–30 minute",
     bullets: [
       "Plombă internă la cald sau ciupercă (reparație permanentă)",
