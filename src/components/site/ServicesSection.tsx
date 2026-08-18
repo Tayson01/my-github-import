@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, Clock, MapPin, Phone, ShieldCheck, Tag, Zap } from "lucide-react";
+import { ArrowRight, Check, Clock, MapPin, Phone, ShieldCheck, Tag, Zap } from "lucide-react";
 
 import { PHONE, TEL, services } from "@/lib/site-data";
 import { ServiceIcon } from "@/components/site/ServiceIcon";
@@ -26,11 +26,6 @@ const serviceCategory: Record<string, Category> = {
 
 const featuredSlug = "asistenta-rutiera";
 
-function splitPrice(price: string): [string, string] {
-  const [main = "", note = ""] = price.split("(");
-  return [main.trim(), note.replace(")", "").trim()];
-}
-
 export function ServicesSection() {
   const [active, setActive] = useState<Category>("all");
 
@@ -45,7 +40,6 @@ export function ServicesSection() {
   const featured = services.find((s) => s.slug === featuredSlug)!;
   const rest = filtered.filter((s) => s.slug !== featuredSlug);
   const showFeatured = active === "all" || active === "urgente";
-  const [featuredPriceMain, featuredPriceNote] = splitPrice(featured.price);
 
   return (
     <section id="servicii" className="mx-auto max-w-6xl px-5 py-14 sm:py-20">
@@ -61,7 +55,6 @@ export function ServicesSection() {
           </p>
         </div>
 
-        {/* Category filter */}
         <div className="flex flex-wrap gap-2">
           {categories.map((c) => {
             const on = active === c.id;
@@ -84,53 +77,48 @@ export function ServicesSection() {
         </div>
       </div>
 
-      {/* Featured hero card */}
       {showFeatured && (
-        <div className="group relative mt-10 overflow-hidden rounded-[28px] bg-gradient-to-br from-brand/40 via-brand/10 to-transparent p-[1.5px] shadow-card">
-          <div className="relative overflow-hidden rounded-[26px] border border-border/60 bg-card p-6 sm:p-8 md:p-9">
-            {/* glow */}
+        <div className="group relative mt-10 overflow-hidden rounded-[28px] bg-gradient-to-br from-brand/30 via-brand/5 to-transparent p-[1.5px] shadow-card">
+          <div className="relative overflow-hidden rounded-[26px] border border-border/60 bg-card">
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-20 -top-24 size-[280px] rounded-full bg-brand/15 blur-3xl transition-opacity duration-500 group-hover:opacity-80"
+              className="pointer-events-none absolute -right-24 -top-28 size-[320px] rounded-full bg-brand/12 blur-3xl transition-opacity duration-500 group-hover:opacity-80"
             />
 
-            {/* Top meta row */}
-            <div className="relative flex flex-wrap items-start justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-brand">
-                  <Zap className="size-3" /> Cel mai solicitat
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
-                  <Clock className="size-3 text-brand" /> {featured.duration}
-                </span>
-              </div>
-
-              <div className="inline-flex flex-col items-end rounded-2xl border border-brand/20 bg-brand/10 px-4 py-2 text-right">
-                <span className="text-xl font-black leading-none text-brand sm:text-2xl">
-                  {featuredPriceMain}
-                </span>
-                {featuredPriceNote && (
-                  <span className="mt-1 max-w-[10rem] text-[10px] font-medium leading-tight text-muted-foreground sm:max-w-[12rem]">
-                    {featuredPriceNote}
+            <div className="relative grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+              <div className="p-6 sm:p-8 md:p-10">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-brand">
+                    <Zap className="size-3" /> Cel mai solicitat
                   </span>
-                )}
-              </div>
-            </div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-[11px] font-semibold text-muted-foreground">
+                    <Clock className="size-3 text-brand" /> {featured.duration}
+                  </span>
+                </div>
 
-            <div className="relative mt-6 grid gap-8 md:mt-8 md:grid-cols-[1.3fr_1fr]">
-              <div>
-                <span className="flex size-14 items-center justify-center rounded-2xl bg-brand text-brand-foreground shadow-card">
+                <span className="mt-6 flex size-14 items-center justify-center rounded-2xl bg-brand text-brand-foreground shadow-card">
                   <ServiceIcon name={featured.icon} className="size-7" />
                 </span>
 
                 <h3 className="mt-5 text-2xl font-extrabold tracking-tight md:text-3xl">
                   {featured.title}
                 </h3>
-                <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
                   {featured.intro}
                 </p>
 
-                <div className="mt-6 flex flex-wrap items-center gap-3">
+                <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+                  {featured.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-sm text-foreground/90">
+                      <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-soft">
+                        <Check className="size-3 text-brand" />
+                      </span>
+                      <span className="leading-snug">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-7 flex flex-wrap items-center gap-3">
                   <Link
                     to="/servicii/$slug"
                     params={{ slug: featured.slug }}
@@ -147,37 +135,41 @@ export function ServicesSection() {
                 </div>
               </div>
 
-              {/* How it works timeline */}
-              <div className="relative rounded-2xl border border-border bg-surface/60 p-5 sm:p-6">
-                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
-                  <MapPin className="size-3.5 text-brand" /> Cum funcționează
+              <div className="relative border-t border-border/60 bg-gradient-to-br from-brand-soft/40 via-brand-soft/20 to-transparent p-6 sm:p-8 md:p-10 lg:border-l lg:border-t-0">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                  <Tag className="size-3.5 text-brand" /> Prețuri clare
+                </div>
+
+                <p className="mt-2 text-4xl font-black tracking-tight text-brand sm:text-5xl">
+                  {featured.priceFrom}
                 </p>
-                <ol className="relative mt-5 space-y-4">
-                  {featured.steps.map((step, i) => {
-                    const isLast = i === featured.steps.length - 1;
-                    return (
-                      <li key={step} className="flex gap-3">
-                        <div className="relative flex flex-col items-center">
-                          <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand text-[10px] font-black text-brand-foreground">
-                            {i + 1}
-                          </span>
-                          {!isLast && (
-                            <span
-                              aria-hidden
-                              className="mt-1.5 block h-full min-h-[1.25rem] w-px bg-border"
-                            />
-                          )}
-                        </div>
-                        <p className="pb-2 text-sm leading-snug text-foreground/90">
-                          {step}
-                        </p>
-                      </li>
-                    );
-                  })}
-                </ol>
-                <div className="mt-4 flex items-center gap-2 border-t border-border pt-4 text-xs text-muted-foreground">
-                  <ShieldCheck className="size-3.5 shrink-0 text-brand" />
-                  <span>Preț final comunicat înainte de plecare · Fără costuri ascunse</span>
+                <p className="text-sm font-medium text-muted-foreground">
+                  {featured.priceNote}
+                </p>
+
+                <div className="mt-6 space-y-2">
+                  {featured.pricing?.map((p) => (
+                    <div
+                      key={p.label}
+                      className="flex items-center justify-between gap-3 rounded-2xl border border-border/70 bg-card/80 px-4 py-3 backdrop-blur-sm"
+                    >
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold">{p.label}</p>
+                        {p.note && <p className="text-[11px] text-muted-foreground">{p.note}</p>}
+                      </div>
+                      <p className="shrink-0 text-sm font-black text-brand">{p.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex items-center gap-2 rounded-2xl border border-brand/20 bg-brand/10 px-4 py-3 text-xs text-brand">
+                  <ShieldCheck className="size-4 shrink-0" />
+                  <span className="font-semibold">Preț final comunicat înainte de plecare. Fără costuri ascunse.</span>
+                </div>
+
+                <div className="mt-5 flex items-start gap-2 text-xs text-muted-foreground">
+                  <MapPin className="mt-0.5 size-3.5 shrink-0 text-brand" />
+                  <span>Acoperim A2, A4, DN39, DN3 și tot județul Constanța.</span>
                 </div>
               </div>
             </div>
@@ -185,7 +177,6 @@ export function ServicesSection() {
         </div>
       )}
 
-      {/* Grid of remaining services */}
       <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {rest.map((s) => (
           <div
@@ -212,7 +203,6 @@ export function ServicesSection() {
               <Clock className="size-3.5 text-brand" /> {s.duration}
             </div>
 
-            {/* bullets on hover */}
             <ul className="relative mt-4 space-y-2 border-t border-border pt-4">
               {s.bullets.slice(0, 3).map((b) => (
                 <li key={b} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -233,7 +223,6 @@ export function ServicesSection() {
         ))}
       </div>
 
-      {/* CTA bar */}
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-brand p-7 text-brand-foreground">
         <div>
           <p className="text-lg font-bold">Nu găsești ce cauți?</p>
