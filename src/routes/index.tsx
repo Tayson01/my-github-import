@@ -19,7 +19,7 @@ import { ServicesSection } from "@/components/site/ServicesSection";
 import { GallerySection } from "@/components/site/GallerySection";
 import { FAQSection } from "@/components/site/FAQSection";
 import { ContactSection } from "@/components/site/ContactSection";
-import { PHONE, REVIEWS, TEL, WA, reviews, services, zones } from "@/lib/site-data";
+import { EMAIL, PHONE, REVIEWS, TEL, WA, reviews, services, zones } from "@/lib/site-data";
 
 
 export const Route = createFileRoute("/")({
@@ -68,8 +68,6 @@ export const Route = createFileRoute("/")({
 
 
 function Index() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-
   return (
     <main>
       {/* Hero */}
