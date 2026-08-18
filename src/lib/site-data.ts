@@ -39,7 +39,14 @@ export const services: Service[] = [
     desc: "Intervenim non-stop pe A2, A4, DN39 și în tot orașul, indiferent de oră.",
     intro:
       "Rămâi cu pana pe autostradă sau pe drum național? Venim la tine cu duba de intervenție, complet echipată, la orice oră din zi sau din noapte. Nu ai nevoie de platformă și nu trebuie să îți muți mașina.",
-    price: "de la 120 lei (deplasare inclusă în oraș)",
+    price: "de la 120 lei",
+    priceFrom: "120 lei",
+    priceNote: "deplasare inclusă în oraș",
+    pricing: [
+      { label: "În Constanța", value: "120 lei", note: "deplasare inclusă" },
+      { label: "A2 / A4 / DN39", value: "150 lei", note: "autostradă & drum național" },
+      { label: "Camioane & utilitare", value: "personalizat", note: "contracte flote" },
+    ],
     duration: "20–40 minute pe loc",
     bullets: [
       "Intervenții pe A2, A4, DN39, DN3 și centura Constanța",
@@ -84,6 +91,8 @@ export const services: Service[] = [
     intro:
       "Venim cu utilajul mobil de montat și echilibrat direct în curtea ta sau în parcarea de la birou. Schimbăm setul sezonier în aproximativ o oră, fără să pierzi timpul la coadă în service.",
     price: "de la 150 lei / set de 4",
+    priceFrom: "150 lei",
+    priceNote: "set de 4 anvelope",
     duration: "45–75 minute pentru un set complet",
     bullets: [
       "Montaj și demontaj pe jantă, cu mașină mobilă",
@@ -106,6 +115,8 @@ export const services: Service[] = [
     intro:
       "Vibrațiile în volan la 90–120 km/h vin aproape mereu de la roți neechilibrate. Facem echilibrare electronică cu aparatură mobilă, direct la tine, cu contragreutăți adezive sau cu clemă.",
     price: "de la 40 lei / roată",
+    priceFrom: "40 lei",
+    priceNote: "per roată",
     duration: "10 minute pe roată",
     bullets: [
       "Echilibrare pentru jante de aluminiu și de oțel",
@@ -128,6 +139,8 @@ export const services: Service[] = [
     intro:
       "Avem echipament special pentru camioane, autotrenuri și autoutilitare: pistoale de impact de mare cuplu, cricuri de tonaj și anvelope de intervenție. Lucrăm cu transportatori și flote pe bază de contract.",
     price: "ofertă personalizată",
+    priceFrom: "ofertă",
+    priceNote: "contracte flote",
     duration: "30–60 minute pe roată",
     bullets: [
       "Intervenții pe A2, A4 și în zona Portului Constanța",
@@ -150,6 +163,8 @@ export const services: Service[] = [
     intro:
       "Când anvelopa nu mai poate fi reparată sau mașina nu poate rula, organizăm tractarea către service-ul sau adresa dorită, în Constanța și în județ.",
     price: "de la 200 lei",
+    priceFrom: "200 lei",
+    priceNote: "în funcție de distanță",
     duration: "în funcție de distanță",
     bullets: [
       "Tractare autoturisme și utilitare ușoare",
