@@ -36,6 +36,7 @@ export type FAQ = {
   category: "prețuri" | "disponibilitate" | "timp-sosire" | "servicii" | "plată" | "siguranță";
 };
 
+export const services: Service[] = [
   {
     slug: "asistenta-rutiera",
     icon: "lifebuoy",
