@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import {
-  ChevronDown,
   Clock,
   ImageOff,
   MapPin,
@@ -14,26 +12,15 @@ import {
   Zap,
 } from "lucide-react";
 
-
 import { Btn, BtnLink, SectionLabel } from "@/components/site/ui";
 import { GoogleMark } from "@/components/site/GoogleMark";
 import { CoverageMapSection } from "@/components/site/CoverageMapSection";
-import { ContactForm } from "@/components/site/ContactForm";
 import { ServicesSection } from "@/components/site/ServicesSection";
 import { GallerySection } from "@/components/site/GallerySection";
-import {
-  ADDRESS,
-  EMAIL,
-  MAPS,
-  PHONE,
-  REVIEWS,
-  TEL,
-  WA,
-  faqs,
-  reviews,
-  services,
-  zones,
-} from "@/lib/site-data";
+import { FAQSection } from "@/components/site/FAQSection";
+import { ContactSection } from "@/components/site/ContactSection";
+import { PHONE, REVIEWS, TEL, WA, reviews, services, zones } from "@/lib/site-data";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
