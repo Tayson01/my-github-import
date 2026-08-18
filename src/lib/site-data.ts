@@ -328,25 +328,41 @@ export const faqs = [
   {
     q: "Cât costă o intervenție de vulcanizare mobilă în Constanța?",
     a: "Prețul pornește de la 80 lei pentru o reparație simplă pe loc (pană cu cui) și ajunge la 150–250 lei pentru schimb roată + echilibrare la domiciliu. Pe A2/A4 tariful include și deplasarea. Sunați pentru o estimare exactă în 30 de secunde.",
+    category: "prețuri",
   },
   {
     q: "Veniți și noaptea sau în weekend?",
     a: "Da, suntem disponibili 24/7, inclusiv noaptea, sâmbăta, duminica și de sărbători. Dacă rămâneți cu pana la 3 dimineața, sunați și venim.",
+    category: "disponibilitate",
   },
   {
     q: "Cât durează până ajungeți la mine?",
     a: "În Constanța oraș ajungem în 10–20 de minute. În Mamaia, Năvodari sau Agigea în 15–35 de minute. În Eforie, Techirghiol sau Ovidiu în 25–45 de minute, în funcție de trafic.",
+    category: "timp-sosire",
   },
   {
     q: "Ce servicii faceți la fața locului?",
     a: "Reparație pană (plombă internă, ciuperci), schimb roată cu cea de rezervă, montaj anvelope noi, echilibrare roți cu aparatură mobilă, verificare presiune și schimb valve. Pentru cazuri severe oferim și transport auto.",
+    category: "servicii",
   },
   {
     q: "Pot plăti cu cardul?",
     a: "Da, acceptăm plata cu cardul (POS mobil), transfer bancar și numerar. Emitem factură pentru companii.",
+    category: "plată",
   },
   {
     q: "Lucrați și cu camioane sau TIR?",
     a: "Da, avem echipament special pentru vulcanizare camioane și autotrenuri. Intervenim pe A2, A4 și în zona portului pentru flote și transportatori.",
+    category: "servicii",
+  },
+  {
+    q: "Este sigur să reparați pană pe autostradă?",
+    a: "Intervenim doar după semnalizarea corectă a zonei de lucru, cu triunghiuri, veste reflectorizante și lumină de avertizare. Siguranța ta și a echipei noastre e prioritatea zero.",
+    category: "siguranță",
+  },
+  {
+    q: "Dacă anvelopa nu poate fi reparată, ce fac?",
+    a: "Îți spunem de la început dacă reparația e sigură sau dacă e nevoie de anvelopă nouă. Oferim și transport auto către service-ul dorit, cu preț comunicat înainte de plecare.",
+    category: "servicii",
   },
 ];
