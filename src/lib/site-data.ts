@@ -30,8 +30,12 @@ export type Service = {
   steps: string[];
 };
 
+export type FAQ = {
+  q: string;
+  a: string;
+  category: "prețuri" | "disponibilitate" | "timp-sosire" | "servicii" | "plată" | "siguranță";
+};
 
-export const services: Service[] = [
   {
     slug: "asistenta-rutiera",
     icon: "lifebuoy",
