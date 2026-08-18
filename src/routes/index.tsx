@@ -258,44 +258,6 @@ function Index() {
         <CoverageMapSection />
       </div>
 
-      {/* Zone */}
-      <section id="zone" className="mx-auto max-w-6xl px-5 py-14 sm:py-20">
-        <SectionLabel>Zone deservite</SectionLabel>
-        <h2 className="mt-3 max-w-xl text-3xl font-extrabold sm:text-4xl tracking-tight">
-          Acoperim Constanța și împrejurimile.
-        </h2>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          Selectează zona ta pentru detalii despre trasee, timp de sosire și prețuri orientative.
-        </p>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {zones.map((z) => (
-            <div
-              key={z.slug}
-              className="flex flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-card"
-            >
-              <p className="inline-flex items-center gap-2 font-bold">
-                <MapPin className="size-4 text-brand" /> {z.name}
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">{z.desc}</p>
-              <BtnLink
-                to="/zone/$slug"
-                params={{ slug: z.slug }}
-                variant="ghost"
-                className="mt-4 self-start px-4 py-2"
-              >
-                Detalii →
-              </BtnLink>
-            </div>
-          ))}
-        </div>
-        <p className="mt-6 text-sm text-muted-foreground">
-          Nu vezi localitatea ta?{" "}
-          <a href={`tel:${TEL}`} className="font-semibold text-brand">
-            Sună-ne
-          </a>
-          , deservim întreg județul Constanța.
-        </p>
-      </section>
 
       {/* Recenzii */}
       <section id="recenzii" className="relative overflow-hidden border-y border-border bg-surface">
@@ -408,74 +370,11 @@ function Index() {
 
 
       {/* FAQ */}
-      <section id="intrebari" className="mx-auto max-w-3xl px-5 py-14 sm:py-20">
-        <SectionLabel>Întrebări frecvente</SectionLabel>
-        <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl tracking-tight">
-          Tot ce vrei să știi înainte să suni.
-        </h2>
-        <div className="mt-10 space-y-3">
-          {faqs.map((f, i) => (
-            <div key={f.q} className="rounded-2xl border border-border bg-card">
-              <button
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold"
-                aria-expanded={openFaq === i}
-              >
-                {f.q}
-                <ChevronDown
-                  className={`size-4 shrink-0 text-brand transition-transform ${openFaq === i ? "rotate-180" : ""}`}
-                />
-              </button>
-              {openFaq === i && (
-                <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="mt-8">
-          <BtnLink to="/intrebari-frecvente" variant="ghost">
-            Toate întrebările frecvente →
-          </BtnLink>
-        </div>
-      </section>
+      <FAQSection />
 
       {/* Contact */}
-      <section id="contact" className="border-t border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-14 sm:py-20">
-          <SectionLabel>Contact</SectionLabel>
-          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl tracking-tight">Hai să vorbim.</h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
-            Sună-ne pentru intervenții urgente sau trimite-ne mesajul direct pe WhatsApp — opțional cu locația
-            ta exactă.
-          </p>
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            <div className="grid gap-4">
-              <a
-                href={`tel:${TEL}`}
-                className="rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-card"
-              >
-                <Phone className="size-5 text-brand" />
-                <p className="mt-4 text-xs font-semibold text-muted-foreground">Telefon · WhatsApp</p>
-                <p className="text-lg font-bold">{PHONE}</p>
-              </a>
-              <a
-                href={MAPS}
-                className="rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-card"
-              >
-                <MapPin className="size-5 text-brand" />
-                <p className="mt-4 text-xs font-semibold text-muted-foreground">Vino la noi</p>
-                <p className="text-lg font-bold">{ADDRESS}</p>
-              </a>
-              <div className="rounded-3xl border border-border bg-card p-6">
-                <Clock className="size-5 text-brand" />
-                <p className="mt-4 text-xs font-semibold text-muted-foreground">Program</p>
-                <p className="text-lg font-bold">Non-stop, 24/7</p>
-              </div>
-            </div>
-            <ContactForm />
-          </div>
-        </div>
-      </section>
+      <ContactSection />
     </main>
   );
 }
+
