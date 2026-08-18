@@ -1,94 +1,91 @@
-import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 
 import { SectionLabel } from "@/components/site/ui";
 import { ContactForm } from "@/components/site/ContactForm";
 import { ADDRESS, MAPS, PHONE, TEL, WA } from "@/lib/site-data";
 
-const rows = [
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "Răspuns în câteva minute",
-    href: WA,
-  },
-  {
-    icon: MapPin,
-    label: "Atelier",
-    value: ADDRESS,
-    href: MAPS,
-  },
-  {
-    icon: Clock,
-    label: "Program",
-    value: "Non-stop, 24/7",
-    href: null,
-  },
-];
-
 export function ContactSection() {
   return (
     <section id="contact" className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
         <div className="max-w-xl">
           <SectionLabel>Contact</SectionLabel>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
             Hai să vorbim.
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Sună pentru intervenții urgente sau scrie-ne pe WhatsApp cu locația ta.
+            Sună pentru intervenție urgentă sau trimite-ne locația pe WhatsApp.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
-          <div>
-            <a
-              href={`tel:${TEL}`}
-              className="group flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-all hover:-translate-y-0.5 hover:shadow-float"
-            >
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand text-brand-foreground">
-                <Phone className="size-5" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-2xl font-black tracking-tight sm:text-3xl">{PHONE}</p>
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  Disponibil 24/7 · răspundem imediat
+        <div className="mt-10 overflow-hidden rounded-[2rem] border border-border bg-card shadow-card lg:grid lg:grid-cols-[1.05fr_1fr]">
+          {/* Left: brand panel */}
+          <div className="relative bg-brand p-8 text-brand-foreground sm:p-10">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-brand-foreground/10 blur-2xl"
+            />
+            <div className="relative">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-foreground/70">
+                Apel de urgență
+              </p>
+              <a
+                href={`tel:${TEL}`}
+                className="mt-3 block text-4xl font-black tracking-tight transition-opacity hover:opacity-90 sm:text-5xl"
+              >
+                {PHONE}
+              </a>
+              <p className="mt-3 text-sm text-brand-foreground/80">
+                Non-stop, 24/7 · răspundem în mai puțin de un minut.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={`tel:${TEL}`}
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-foreground px-5 py-3 text-sm font-bold text-brand transition-transform hover:-translate-y-0.5"
+                >
+                  <Phone className="size-4" /> Sună acum
+                </a>
+                <a
+                  href={WA}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-foreground/35 px-5 py-3 text-sm font-bold transition-colors hover:bg-brand-foreground/10"
+                >
+                  <MessageCircle className="size-4" /> WhatsApp
+                </a>
+              </div>
+
+              <div className="mt-10 space-y-4 border-t border-brand-foreground/20 pt-6 text-sm">
+                <a
+                  href={MAPS}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 transition-opacity hover:opacity-80"
+                >
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-brand-foreground/70" />
+                  <span>{ADDRESS}</span>
+                </a>
+                <p className="flex items-start gap-3">
+                  <Clock className="mt-0.5 size-4 shrink-0 text-brand-foreground/70" />
+                  <span>Deschis non-stop, inclusiv weekend și sărbători</span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <ShieldCheck className="mt-0.5 size-4 shrink-0 text-brand-foreground/70" />
+                  <span>Preț comunicat înainte de deplasare, fără costuri ascunse</span>
                 </p>
               </div>
-            </a>
-
-            <div className="mt-8 divide-y divide-border border-t border-border">
-              {rows.map((row) => {
-                const Wrapper = row.href ? "a" : "div";
-                return (
-                  <Wrapper
-                    key={row.label}
-                    {...(row.href
-                      ? {
-                          href: row.href,
-                          target: row.href.startsWith("http") ? "_blank" : undefined,
-                          rel: "noopener noreferrer",
-                        }
-                      : {})}
-                    className="group flex items-center gap-4 py-4 transition-colors hover:text-brand"
-                  >
-                    <row.icon className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" />
-                    <span className="w-24 shrink-0 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      {row.label}
-                    </span>
-                    <span className="min-w-0 flex-1 text-sm font-medium">{row.value}</span>
-                  </Wrapper>
-                );
-              })}
             </div>
           </div>
 
-          <div>
-            <div className="rounded-3xl border border-border bg-card p-6 shadow-card sm:p-8">
-              <p className="text-base font-bold">Trimite mesaj rapid</p>
-              <p className="mt-1 text-xs text-muted-foreground">Se deschide în WhatsApp</p>
-              <div className="mt-6">
-                <ContactForm />
-              </div>
+          {/* Right: form */}
+          <div className="border-t border-border p-8 sm:p-10 lg:border-l lg:border-t-0">
+            <p className="text-lg font-bold">Trimite mesaj rapid</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Completezi în 20 de secunde, se deschide direct în WhatsApp.
+            </p>
+            <div className="mt-6">
+              <ContactForm />
             </div>
           </div>
         </div>
